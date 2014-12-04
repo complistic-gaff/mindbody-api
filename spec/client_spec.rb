@@ -7,6 +7,8 @@ describe MindBody::Services::Client do
     creds.stub(:source_name).and_return('test')
     creds.stub(:source_key).and_return('test_key')
     creds.stub(:site_ids).and_return([-99])
+    creds.stub(:username).and_return('username')
+    creds.stub(:password).and_return('password')
     MindBody.stub(:configuration).and_return(creds)
     @client = MindBody::Services::Client.new(:wsdl => 'spec/fixtures/wsdl/geotrust.wsdl')
 
@@ -27,6 +29,11 @@ describe MindBody::Services::Client do
                                      'SourceName' => 'test',
                                      'Password' => 'test_key',
                                      'SiteIDs' => {'int' => [-99]}
+                                   },
+                                   'UserCredentials' => {
+                                     'Username' => 'username',
+                                     'Password' => 'password',
+                                     'SiteIDs'=> {'int' => [-99]}
                                    }
                                 }}}
     end
