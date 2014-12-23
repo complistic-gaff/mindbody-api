@@ -9,4 +9,5 @@ describe MindBody::Services::SaleService do
   it { should respond_to(:get_packages) }
   it { should respond_to(:get_products) }
   it { should respond_to(:get_custom_payment_methods) }
+  it { should respond_to(:checkout_shopping_cart) }
 end

@@ -19,22 +19,27 @@ module MindBody
 
       private
       def auth_params
-        {
+        params = {
           'SourceCredentials' => {
             'SourceName'=> MindBody.configuration.source_name,
             'Password'=> MindBody.configuration.source_key,
             'SiteIDs'=> {
               'int'=> MindBody.configuration.site_ids
             }
-          },
-          'UserCredentials' => {
-            'Username' => MindBody.configuration.username,
-            'Password' => MindBody.configuration.password,
-            'SiteIDs'=> {
-              'int'=> MindBody.configuration.site_ids
-            }
           }
         }
+        if MindBody.configuration.username.length > 0 && MindBody.configuration.password.length > 0
+          params.merge!({
+            'UserCredentials' => {
+              'Username' => MindBody.configuration.username,
+              'Password' => MindBody.configuration.password,
+              'SiteIDs'=> {
+                'int'=> MindBody.configuration.site_ids
+              }
+            }
+          })
+        end
+        params
       end
 
       def fixup_locals(locals)

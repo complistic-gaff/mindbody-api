@@ -81,7 +81,6 @@ module MindBody
             end
           end
         end
-
         return hash
       end
 
